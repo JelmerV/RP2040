@@ -35,6 +35,7 @@
       { "id": "macros" },
       { "id": "laser_cluster" },
       { "id": "laser_coolant" },
+      { "id": "plasma" },
       { "id": "bluetooth" },
       { "id": "fans" },
       { "id": "embroidery" }
