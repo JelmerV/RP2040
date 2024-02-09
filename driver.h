@@ -203,10 +203,6 @@
 #include "motors/trinamic.h"
 #endif
 
-#if PLASMA_ENABLE
-#include "plasma/thc.c"
-#endif
-
 #if USB_SERIAL_CDC
 #define SP0 1
 #else

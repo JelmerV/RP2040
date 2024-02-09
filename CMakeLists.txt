@@ -38,6 +38,7 @@ include(fans/CMakeLists.txt)
 include(bluetooth/CMakeLists.txt)
 include(embroidery/CMakeLists.txt)
 include(laser/CMakeLists.txt)
+include(plasma/CMakeLists.txt)
 if(ADD_HPGL)
     include(hpgl/CMakeLists.txt)
 endif()
@@ -192,6 +193,7 @@ target_link_libraries(grblHAL PRIVATE
  keypad
  fans
  laser
+ plasma
  bluetooth
  eeprom
  embroidery
