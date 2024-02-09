@@ -152,7 +152,8 @@ typedef union {
 #endif
 
 // Define probe switch input pin.
-#define PROBE_PIN           28
+#define PROBE_PIN           24
+#define AUXINPUT_ANALOG0_PIN    28   // Replacing probe for analog input
 
 #if I2C_ENABLE
 #define I2C_PORT            0

@@ -21,7 +21,7 @@
 
 // NOTE: Only one board may be enabled!
 // If none is enabled pin mappings from generic_map.h will be used.
-//#define BOARD_PICO_CNC
+#define BOARD_PICO_CNC
 //#define BOARD_PICOBOB
 //#define BOARD_PICOBOB_G540
 //#define BOARD_PICOBOB_DLX
@@ -79,7 +79,8 @@
 //#define EEPROM_IS_FRAM          1 // Uncomment when EEPROM is enabled and chip is FRAM, this to remove write delay.
 
 #define PLASMA_ENABLE           1 // Plasma plugin
-#define STEP_INJECT_ENABLE      1 // used by plasma plugin to override Z-axis control??
+// #define STEP_INJECT_ENABLE      1 // used by plasma plugin to override Z-axis control??
+
 
 // Optional control signals:
 // These will be assigned to aux input pins. Use the $pins command to check which pins are assigned.

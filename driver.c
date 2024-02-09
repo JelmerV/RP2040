@@ -285,6 +285,10 @@ static input_signal_t inputpin[] = {
 #ifdef AUXINPUT7_PIN
     { .id = Input_Aux7, .port = GPIO_INPUT, .pin = AUXINPUT7_PIN, .group = PinGroup_AuxInput }
 #endif
+
+#ifdef AUXINPUT_ANALOG0_PIN
+    { .id = Input_Analog_Aux0, .port = GPIO_INPUT, .pin = AUXINPUT_ANALOG0_PIN, .group = PinGroup_AuxInputAnalog }
+#endif
 };
 
 #if STEP_PORT == GPIO_SR8
