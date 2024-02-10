@@ -287,9 +287,19 @@ static input_signal_t inputpin[] = {
 #endif
 
 #ifdef AUXINPUT_ANALOG0_PIN
-    { .id = Input_Analog_Aux0, .port = GPIO_INPUT, .pin = AUXINPUT_ANALOG0_PIN, .group = PinGroup_AuxInputAnalog }
+    { .id = Input_Analog_Aux0, .port = AUXINPUT_ANALOG0_PORT, .pin = AUXINPUT_ANALOG0_PIN, .group = PinGroup_AuxInputAnalog }
+#endif
+#ifdef AUXINPUT_ANALOG1_PIN
+    { .id = Input_Analog_Aux1, .port = AUXINPUT_ANALOG1_PORT, .pin = AUXINPUT_ANALOG1_PIN, .group = PinGroup_AuxInputAnalog }
+#endif
+#ifdef AUXINPUT_ANALOG2_PIN
+    { .id = Input_Analog_Aux2, .port = AUXINPUT_ANALOG2_PORT, .pin = AUXINPUT_ANALOG2_PIN, .group = PinGroup_AuxInputAnalog }
+#endif
+#ifdef AUXINPUT_ANALOG3_PIN
+    { .id = Input_Analog_Aux3, .port = AUXINPUT_ANALOG3_PORT, .pin = AUXINPUT_ANALOG3_PIN, .group = PinGroup_AuxInputAnalog }
 #endif
 };
+
 
 #if STEP_PORT == GPIO_SR8
 #if N_ABC_MOTORS > 1
@@ -1888,10 +1898,13 @@ void settings_changed (settings_t *settings, settings_changed_flags_t changed)
         do {
 
             input = &inputpin[--i];
+
+            if(input->group == PinGroup_AuxInputAnalog)
+                continue;
+
             input->bit = 1 << input->pin;
             input->debounce = false;
             input->invert = false;
-
             input->mode.irq_mode = IRQ_Mode_None;
             pullup = input->group == PinGroup_AuxInput;
 
@@ -2564,6 +2577,13 @@ bool driver_init (void)
             if(input->pin == MOTOR_WARNING_PIN)
                 aux_ctrl[AuxCtrl_MotorWarning].port = aux_inputs.n_pins - 1;
 #endif
+
+        } else if(input->group == PinGroup_AuxInputAnalog) {
+            if(aux_inputs_analog.pins.inputs == NULL)
+                aux_inputs_analog.pins.inputs = input;
+            input->id = (pin_function_t)(Input_Analog_Aux0 + aux_inputs_analog.n_pins++);
+            input->bit = 1 << input->pin;
+            input->mode.analog = input->cap.analog = On;
         } else if(input->group & (PinGroup_Limit|PinGroup_LimitMax)) {
             if(limit_inputs.pins.inputs == NULL)
                 limit_inputs.pins.inputs = input;
@@ -2605,7 +2625,10 @@ bool driver_init (void)
 #endif
 #endif
 
-    if(aux_outputs_analog.n_pins)
+
+  #ifndef MCP3221_ENABLE
+    if(aux_inputs_analog.n_pins || aux_outputs_analog.n_pins)
+  #endif
         ioports_init_analog(&aux_inputs_analog, &aux_outputs_analog);
 
 #if SAFETY_DOOR_ENABLE

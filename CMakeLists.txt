@@ -206,6 +206,7 @@ target_link_libraries(grblHAL PRIVATE
  hardware_spi
  hardware_gpio
  hardware_pwm
+ hardware_adc
  hardware_rtc
  hardware_clocks
  hardware_flash
