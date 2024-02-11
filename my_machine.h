@@ -45,10 +45,11 @@
 // If none are specified the default PWM spindle is instantiated.
 // Spindle definitions can be found in grbl/spindle_control.h.
 // More here https://github.com/grblHAL/Plugins_spindle
-//#define SPINDLE0_ENABLE         SPINDLE_HUANYANG1
+#define SPINDLE0_ENABLE         SPINDLE_ONOFF0
 //#define SPINDLE1_ENABLE         SPINDLE_PWM0
 //#define SPINDLE2_ENABLE         SPINDLE_NONE 
 //#define SPINDLE2_ENABLE         SPINDLE_NONE
+
 // **********************
 //#define MODBUS_ENABLE           1 // Set to 1 for auto direction, 2 for direction signal on auxillary output pin.
 //#define WIFI_ENABLE             0 // Do NOT enable here, enable in CMakeLists.txt!
@@ -77,8 +78,8 @@
 //#define TRINAMIC_DEV            1 // Development mode, adds a few M-codes to aid debugging. Do not enable in production code.
 //#define EEPROM_ENABLE          16 // I2C EEPROM/FRAM support. Set to 16 for 2K, 32 for 4K, 64 for 8K, 128 for 16K and 256 for 16K capacity.
 //#define EEPROM_IS_FRAM          1 // Uncomment when EEPROM is enabled and chip is FRAM, this to remove write delay.
+
 #define PLASMA_ENABLE           1 // Plasma plugin with THC
-// #define STEP_INJECT_ENABLE      1
 
 
 // Optional control signals:

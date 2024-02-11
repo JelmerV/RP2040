@@ -122,6 +122,8 @@ typedef union {
 
 // Define aux I/O
 
+#define AUXINPUT_ANALOG0_PIN    27   // Replaced spindle PWM
+
 #define AUX_IO0_PIN         10
 #define AUX_IO1_PIN         11
 #define AUX_IO2_PIN         12
@@ -152,8 +154,7 @@ typedef union {
 #endif
 
 // Define probe switch input pin.
-#define PROBE_PIN           24
-#define AUXINPUT_ANALOG0_PIN    28   // Replacing probe for analog input
+#define PROBE_PIN           28
 
 #if I2C_ENABLE
 #define I2C_PORT            0
